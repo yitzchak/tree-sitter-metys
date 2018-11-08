@@ -1,0 +1,150 @@
+{
+  "name": "metys",
+  "rules": {
+    "document": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_chunk"
+      }
+    },
+    "_chunk": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PREC",
+          "value": 3,
+          "content": {
+            "type": "SYMBOL",
+            "name": "chunk"
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 2,
+          "content": {
+            "type": "SYMBOL",
+            "name": "text"
+          }
+        }
+      ]
+    },
+    "text": {
+      "type": "PATTERN",
+      "value": "([^<|]+|[<|])"
+    },
+    "chunk": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "open"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parameters"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_group_contents"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_code_contents"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_inline_code_contents"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "close"
+        }
+      ]
+    },
+    "open": {
+      "type": "STRING",
+      "value": "<|"
+    },
+    "code_sep": {
+      "type": "STRING",
+      "value": ":"
+    },
+    "inline_code_sep": {
+      "type": "STRING",
+      "value": "|"
+    },
+    "group_sep": {
+      "type": "STRING",
+      "value": "@"
+    },
+    "close": {
+      "type": "STRING",
+      "value": "|>"
+    },
+    "parameters": {
+      "type": "PATTERN",
+      "value": "([^:|@]|\"[^\"]*\")*"
+    },
+    "code": {
+      "type": "PATTERN",
+      "value": "[^|]*"
+    },
+    "_group_contents": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "group_sep"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_chunk"
+          }
+        }
+      ]
+    },
+    "_code_contents": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "code_sep"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "code"
+        }
+      ]
+    },
+    "_inline_code_contents": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "inline_code_sep"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "code"
+        }
+      ]
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "externals": [],
+  "inline": []
+}

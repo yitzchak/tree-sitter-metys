@@ -1,0 +1,31 @@
+{
+  "name": "tree-sitter-metys",
+  "version": "0.0.0",
+  "description": "metys grammar for tree-sitter",
+  "main": "index.js",
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
+    "test": "tree-sitter test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yitzchak/tree-sitter-metys.git"
+  },
+  "keywords": [
+    "metys",
+    "tree-sitter"
+  ],
+  "author": "Tarn Burton <twburton@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yitzchak/tree-sitter-metys/issues"
+  },
+  "homepage": "https://github.com/yitzchak/tree-sitter-metys#readme",
+  "dependencies": {
+    "nan": "^2.11.1"
+  },
+  "devDependencies": {
+    "tree-sitter": "^0.13.17",
+    "tree-sitter-cli": "^0.13.10"
+  }
+}

@@ -1,0 +1,57 @@
+==================
+Text chunk
+==================
+fubar
+---
+
+(document
+  (text))
+
+==================
+Code chunk
+==================
+<|f:b|>
+---
+
+(document
+  (chunk (open) (parameters) (code_sep) (code) (close)))
+
+==================
+Inline code chunk
+==================
+<|f|b|>
+---
+
+(document
+  (chunk (open) (parameters) (inline_code_sep) (code) (close)))
+
+==================
+Group chunk
+==================
+<|f@b|>
+---
+
+(document
+  (chunk (open) (parameters) (group_sep) (text) (close)))
+
+==================
+Complex document
+==================
+foo
+<|bla=bar @
+quux <|kernel|inline code|>
+<|kernel:code|>
+wibble|>
+gronk
+---
+
+(document
+  (text)
+  (chunk (open) (parameters) (group_sep)
+    (text)
+    (chunk (open) (parameters) (inline_code_sep) (code) (close))
+    (text)
+    (chunk (open) (parameters) (code_sep) (code) (close))
+    (text)
+    (close))
+  (text))
